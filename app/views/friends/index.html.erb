@@ -1,0 +1,42 @@
+
+<% if user_signed_in? %>
+<div class = "container">
+<table class="table table-striped table table-hover table table-bordered table align-middle">
+  <thead  class="table-dark">
+  <tr class="table-active">
+      <th>Fast Name</th>
+      <th>Last Name</th> 
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Twitter</th>
+      <th>Details</th>
+
+    </tr>
+  </thead>
+  <tbody class="table-group-divider">
+    <% @friends.each do |friend| %>
+      <% if friend.user_id ==current_user.id%>
+      <tr >
+        <td><%= friend.fastname %></td>
+        <td><%= friend.lastname %></td>
+         <td><%= friend.email %></td>
+          <td><%= friend.phone %></td>
+           <td><%= friend.twitter %></td>
+        <td><%= link_to "More", friend , class:"btn btn-secondary"%>  </td>
+      </tr>
+      <%end%>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<%= link_to "New friend", new_friend_path, class:"btn btn-dark" %>
+</div>
+
+<% else %>
+
+ <div class="container d-flex justify-content-center align-items-center">
+            <h1 class="position-relative">Home Page</h1>
+        </div>
+
+
+<%end%>
